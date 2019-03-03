@@ -4,6 +4,8 @@ This plugin allows you to animate a button to signal to users that something is 
 
 NOTE: Requires font-awesome with fa-spin class.
 
+Working fiddle: https://jsfiddle.net/cloudulus/t4oknmpg/
+
 ## Usage:
 
 ### HTML:

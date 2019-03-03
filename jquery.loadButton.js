@@ -17,11 +17,17 @@ if (window.jQuery) {
                 loadingForeground: 'white'
             }, opts);
 
-            var label = this.text();
+            var label = this.html();
             var origBG = this.css('background');
             var origFG = this.css('color');
 
             if (action == 'on') {
+                var keyframe = document.createElement('style');
+                keyframe.type = 'text/css';
+                keyframe.setAttribute('id', 'loadButton-keyframe');
+                keyframe.innerHTML = '@keyframes flasher {50% {opacity: 0;}}';
+                document.getElementsByTagName('head')[0].appendChild(keyframe);
+
                 this.attr('data-label', label);
                 this.attr('data-orig-bg', origBG);
                 this.attr('data-orig-fg', origFG);
@@ -29,10 +35,12 @@ if (window.jQuery) {
                 this.css('color', settings.loadingForeground);
                 var html = '<i style="color: ' + settings.loadingForeground + ';" class="' + settings.faClass + ' ' + settings.faIcon;
                 if (settings.doSpin) html = html + ' fa-spin';
-                html = html + '"></i> <span style="color: ' + settings.loadingForeground + ' !important; animation: blinker 1s linear infinite;"> ' + settings.loadingText + '</span>';
+                html = html + '"></i> <span style="color: ' + settings.loadingForeground + ' !important; animation: flasher 1s linear infinite;"> ' + settings.loadingText + '</span>';
                 this.html(html);
                 this.blur();
             } else if (action == 'off') {
+                var keyframe = document.getElementById('loadButton-keyframe');
+                keyframe.parentNode.removeChild(keyframe);
                 this.html(this.data('label'));
                 this.css('background', this.data('orig-bg'));
                 this.css('color', this.data('orig-fg'));
