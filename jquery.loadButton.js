@@ -37,6 +37,7 @@ if (window.jQuery) {
                 if (settings.doSpin) html = html + ' fa-spin';
                 html = html + '"></i> <span style="color: ' + settings.loadingForeground + ' !important; animation: flasher 1s linear infinite;"> ' + settings.loadingText + '</span>';
                 this.html(html);
+                this.attr('disabled', true);
                 this.blur();
             } else if (action == 'off') {
                 var keyframe = document.getElementById('loadButton-keyframe');
@@ -44,6 +45,7 @@ if (window.jQuery) {
                 this.html(this.data('label'));
                 this.css('background', this.data('orig-bg'));
                 this.css('color', this.data('orig-fg'));
+                this.removeAttr('disabled');
             }
             return this;
         }
