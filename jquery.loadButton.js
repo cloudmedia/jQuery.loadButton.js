@@ -1,5 +1,5 @@
 /**
- * jQuery.loadButton.js
+ * jQuery.Passwordify.js
  * Written by: Jay Simons
  * Cloudulus.Media (https://code.cloudulus.media)
  */
@@ -41,7 +41,7 @@ if (window.jQuery) {
                 this.blur();
             } else if (action == 'off') {
                 var keyframe = document.getElementById('loadButton-keyframe');
-                keyframe.parentNode.removeChild(keyframe);
+                if (typeof keyframe !== typeof undefined && typeof keyframe !== typeof null) keyframe.parentNode.removeChild(keyframe);
                 this.html(this.data('label'));
                 this.css('background', this.data('orig-bg'));
                 this.css('color', this.data('orig-fg'));
